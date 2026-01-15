@@ -15,7 +15,6 @@ build/
 # Environment
 .env
 .env.local
-# 允许 .env.example 文件（模板文件，可以提交到Git）
 !.env.example
 
 # IDE
