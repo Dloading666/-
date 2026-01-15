@@ -82,18 +82,40 @@ python init_tables.py
 
 #### 3.1 配置环境变量
 
-在 `backend` 目录创建 `.env` 文件（可选，如果使用默认配置可以跳过）：
+**重要：为了保护你的 API 密钥，请使用 `.env` 文件配置，不要将敏感信息硬编码在代码中！**
 
-```env
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_USER=root
-MYSQL_PASSWORD=123456
-MYSQL_DATABASE=sports_analysis
-LLM_API_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
-LLM_API_KEY=sk-79e462e4f6f04d37a10688706f0b5eae
-LLM_MODEL=qwen3-max
-```
+1. **复制模板文件**：在 `backend` 目录，将 `.env.example` 复制为 `.env`：
+   ```bash
+   cd backend
+   copy .env.example .env
+   ```
+   或者在 PowerShell 中：
+   ```powershell
+   cd backend
+   Copy-Item .env.example .env
+   ```
+
+2. **编辑 `.env` 文件**，填入你的真实配置值：
+   ```env
+   # 数据库配置
+   MYSQL_HOST=localhost
+   MYSQL_PORT=3306
+   MYSQL_USER=root
+   MYSQL_PASSWORD=your_mysql_password
+   MYSQL_DATABASE=sports_analysis
+
+   # LLM配置（DashScope 通义千问）
+   LLM_API_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+   LLM_API_KEY=your_dashscope_api_key_here
+   LLM_MODEL=qwen3-max
+
+   # 应用安全配置
+   SECRET_KEY=your-secret-key-here-change-in-production
+   ALGORITHM=HS256
+   ACCESS_TOKEN_EXPIRE_MINUTES=30
+   ```
+
+3. **验证配置**：确保 `.env` 文件已正确创建，且所有必需的值都已填写。
 
 #### 3.2 启动后端
 
